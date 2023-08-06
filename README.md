@@ -1,2 +1,2 @@
 # Healthbot.AI
-Chatbot kesehatan berbasis GPT
+Chatbot kesehatan offline berbasis GPT-2
