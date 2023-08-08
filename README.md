@@ -27,5 +27,5 @@
 - HealthBot.AI adalah proyek sederhana dan tidak menggantikan konsultasi langsung dengan profesional medis. Informasi yang diberikan oleh chatbot ini hanya sebagai referensi tambahan. Selalu konsultasikan masalah kesehatan Anda dengan dokter atau ahli kesehatan terpercaya untuk diagnosis dan pengobatan yang tepat.
 
 - Kami berharap HealthBot.AI dapat membantu meningkatkan akses informasi kesehatan bagi masyarakat di wilayah terpencil dan dengan akses internet terbatas dalam bahasa Indonesia. Proyek ini juga diarahkan untuk mendukung pengguna dengan laptop spek rendah sehingga dapat digunakan dengan mudah tanpa membebani sumber daya komputer.
-- 
+
 - Kami berencana untuk deploy healthbot.AI di set top box bekas dan dijadikan server lokal, sehingga bisa di gunakan di smartphone.
