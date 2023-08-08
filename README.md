@@ -7,7 +7,7 @@
 
 ## Work-in-Progress
 
-## HealthBot.AI
+## Deskripsi
 
 **HealthBot.AI** adalah chatbot kesehatan berbasis model GPT-2 yang menggunakan bahasa Indonesia dan dirancang khusus untuk berjalan secara offline. Chatbot ini bertujuan untuk memberikan informasi dan saran kesehatan kepada pengguna di wilayah minim internet atau yang jauh dari fasilitas kesehatan. Selain itu, model GPT-2 yang digunakan dalam proyek ini sangat ringan dan dapat dijalankan di laptop dengan spesifikasi rendah, termasuk laptop dengan RAM hanya 2GB.
 
@@ -24,7 +24,8 @@
 
 ## Catatan
 
-- HealthBot.AI adalah proyek sederhana dan tidak menggantikan konsultasi langsung dengan profesional medis. Informasi yang diberikan oleh chatbot ini hanya sebagai referensi tambahan dalam bahasa Indonesia. Selalu konsultasikan masalah kesehatan Anda dengan dokter atau ahli kesehatan terpercaya untuk diagnosis dan pengobatan yang tepat.
+- HealthBot.AI adalah proyek sederhana dan tidak menggantikan konsultasi langsung dengan profesional medis. Informasi yang diberikan oleh chatbot ini hanya sebagai referensi tambahan. Selalu konsultasikan masalah kesehatan Anda dengan dokter atau ahli kesehatan terpercaya untuk diagnosis dan pengobatan yang tepat.
 
 - Kami berharap HealthBot.AI dapat membantu meningkatkan akses informasi kesehatan bagi masyarakat di wilayah terpencil dan dengan akses internet terbatas dalam bahasa Indonesia. Proyek ini juga diarahkan untuk mendukung pengguna dengan laptop spek rendah sehingga dapat digunakan dengan mudah tanpa membebani sumber daya komputer.
+- 
 - Kami berencana untuk deploy healthbot.AI di set top box bekas dan dijadikan server lokal, sehingga bisa di gunakan di smartphone.
