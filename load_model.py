@@ -19,16 +19,15 @@ class Chainer:
         self.model_download = ModelDownloader()
         with open('config.json') as self.configuration:
             self.user_config = json.load(self.configuration)
-        with open('template.json') as self.prompt_template:
-            self.user_template = json.load(self.prompt_template)
         meta = f"{model}.meta"
         model = f"{model}.bin"
         self.model = model
+        """
         if not Path(model).is_file():
             self.model_download.download_file(f"", model)
         if not Path(meta).is_file():
             self.model_download.download_file(f"", meta)
-
+        """
         self.name = name
         
         self.stop_word = ['\n<EOL>:','<eol>', '<Eol>','pertanyaan :' ]
@@ -69,6 +68,7 @@ class Chainer:
 
         self.chain = LLMChain(llm=self.llm, prompt=self.prompt, memory=self.memory)
 
+    
     @staticmethod
     def change_stop_words(stop_words, name):
         new_stop_words = []
@@ -81,7 +81,7 @@ class Chainer:
     def change_names(template, user_name):
         template = template.replace("pertanyaan", user_name)
         return template
-
+    
     def chain(self, input_text):
         prompt = self.prompt.generate_prompt({
             "chat_history": self.memory.export_memory(),
@@ -91,5 +91,3 @@ class Chainer:
         self.memory.add_message(input_text, "human")
         self.memory.add_message(response.choices[0].text.strip(), "ai")
         return response.choices[0].text.strip()
-
-

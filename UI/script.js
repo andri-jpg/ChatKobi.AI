@@ -19,16 +19,27 @@ function send() {
     const message = document.getElementById('messages');
     const send = document.createElement('p');
     const recv = send.cloneNode(true);
-    const recNode = document.querySelectorAll('.receiver');
     send.innerText = input.value;
+    x = send.innerText;
+    eel.handleinput(x);
     send.className = "sender";
     message.appendChild(send);
-    fetch('dataset.json')
-      .then(res => res.json())
-      .then(data => {
-        const foundIndex = data.findIndex(d => d.s.toLowerCase() === input.value.toLowerCase());
-        recv.innerText = foundIndex > -1 ? data[foundIndex].r : "maaf, saya masih dalam tahap pengembangan";
-      });
+    recv.innerText = response;
+    recv.className = "receiver";
+    message.appendChild(recv);
+    if (c % 2 == 1) { 
+      new Audio('send.ogg').play();
+    }
+  }
+}
+
+eel.expose(bot_resp);
+function bot_resp(response) {
+    const message = document.getElementById('messages');
+    const send = document.createElement('p');
+    const recv = send.cloneNode(true);
+    const recNode = document.querySelectorAll('.receiver');
+    recv.innerText = response;
     recv.className = "receiver";
     message.appendChild(recv);
     if (c % 2 == 1) { 
@@ -37,7 +48,6 @@ function send() {
     message.scrollTop = recNode[recNode.length-1].offsetTop - 10;
     setTimeout(function() { input.value = '' }, 100);
   }
-}
 
 document.getElementById('send').addEventListener('click', send);
 input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { send() } })
@@ -65,37 +75,6 @@ var theme = document.getElementsByClassName('theme');
 
 if (localStorage.getItem('scheme')) {
   themeChange(localStorage.getItem('scheme'), localStorage.getItem('scheme2'));
-}
-
-
-function themeChange(theme, theme2) {
-  document.querySelector(':root').style.setProperty('--primary', theme);
-  document.querySelector(':root').style.setProperty('--secondary', theme2);
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", theme)
-  localStorage.setItem('scheme', theme);
-  localStorage.setItem('scheme2', theme2);
-}
-
-
-theme[0].onclick = function() {
-  themeChange('orange', 'darkorange');
-}
-theme[1].onclick = function() {
-  themeChange('lightskyblue', 'deepskyblue');
-}
-theme[2].onclick = function() {
-  themeChange('mediumseagreen', 'seagreen');
-}
-theme[3].onclick = function() {
-  themeChange('mediumpurple', 'rebeccapurple');
-}
-theme[4].onclick = function() {
-  themeChange('black', 'black');
-}
-
-theme[5].onclick = function() {
-  themeChange('#076', '#054');
-  localStorage.clear();
 }
 
 window.onload = function() {

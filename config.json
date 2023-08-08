@@ -1,3 +1,10 @@
 {
-    "user_name": "andri"
+    "user_name": "andri",
+    "threads": 4,
+    "context_length": 800,
+    "top_p": 0.88,
+    "top_k": 1,
+    "temperature": 0.8,
+    "max_new_tokens": 30,
+    "repetition_penalty": 1.08
 }

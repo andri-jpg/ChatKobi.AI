@@ -1,26 +1,22 @@
-import eel
 import json
-from chain import ChainingModel
+import eel
+from load_model import Chainer
 
 eel.init('UI')
+
+with open('config.json', encoding="utf-8") as user_config:
+    configs = json.load(user_config)
+
+name = configs['user_name']
 
 with open('config.json') as user_config:
     configs = json.load(user_config)
 
 name = configs['user_name']
 
-@eel.expose
-def initialize_model():
-    global generator
-
-    with open('config.json') as user_config:
-        configs = json.load(user_config)
-
-    name = configs['user_name']
-
-    generator = ChainingModel(
-        model='',
-        name=name,
+generator = Chainer(
+    model='gpt2-medium-indonesian-q4_0-ggjt',
+    name=name,
     )
 
 words_to_clean = ["\n<EOL", "\n<Eol"]
@@ -61,10 +57,11 @@ def save_config_file(data):
 
 @eel.expose                       
 def handleinput(x):
-    eel.disableText()
-    eel.statusBot('typing...')
+   # eel.disableText()
+    #eel.statusBot('typing...')
     result = generator.chain(x)
     result = result["text"]
+    eel.bot_resp(result)
     print(result)
 
 eel.start('index.html',mode='edge', size =(903,860)) 

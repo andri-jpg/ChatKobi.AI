@@ -69,7 +69,7 @@ a {
   width: 100%;
   display: none;
   flex-direction: column;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 p {
