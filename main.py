@@ -61,7 +61,7 @@ def handleinput(x):
     #eel.statusBot('typing...')
     result = generator.chain(x)
     result = result["text"]
-    eel.bot_resp(result)
+    eel.bot_response(result)
     print(result)
 
 eel.start('index.html',mode='edge', size =(903,860)) 

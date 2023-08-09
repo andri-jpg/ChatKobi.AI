@@ -69,7 +69,8 @@ a {
   width: 100%;
   display: none;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 p {
@@ -78,21 +79,28 @@ p {
   background-color: white;
   box-shadow: 0.1rem 0.2rem 0.2rem var(--darker);
   padding: 0.1rem 1rem 0.1rem 1rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   display: flex;
   align-items: center;
-  max-width: 50%;
+  max-width: 80%;
+  height: auto;
   word-break: break-word;
   animation: go 0.5s ease-in-out;
 }
 
 .sender {
   margin-left: auto;
+  display: flex;
+  height: max-content;
+  align-items: center;
 }
 
 .receiver {
   margin-right: auto;
+  display: flex;
+  align-items: center;
 }
+
 
 input {
   height: 3rem;
@@ -103,7 +111,7 @@ input {
   padding-left: 5%;
   box-shadow: 0.05rem 0.1rem 0.1rem var(--darker);
   margin-right: auto;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 input::placeholder {
@@ -122,7 +130,7 @@ input::placeholder {
   height: 3rem;
   width: 3rem;
   border: none;
-  border-radius: 50%;
+  border-radius: 25%;
   font-size: 1.5rem;
   background-color: var(--lighter);
   box-shadow: 0.05rem 0.1rem 0.1rem var(--darker);

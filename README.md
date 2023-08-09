@@ -21,11 +21,27 @@
 
 ## Cara Menggunakan
 
+## Disclaimer
 
+- HealthBot.AI adalah proyek sederhana dan tidak menggantikan konsultasi langsung dengan para profesional medis. Informasi yang diberikan oleh chatbot ini hanya sebagai referensi tambahan. Selalu konsultasikan dokter atau ahli kesehatan yang terpercaya untuk diagnosis dan pengobatan yang akurat terkait masalah kesehatan Anda.
+
+- Proyek HealthBot.AI adalah proyek open-source dengan lisensi MIT. Oleh karena itu, penggunaan dan distribusi proyek ini tunduk pada ketentuan lisensi MIT yang tercantum dalam berkas LICENSE di repositori.
+
+- Dengan menggunakan HealthBot.AI, Anda setuju untuk mematuhi semua ketentuan dan persyaratan lisensi MIT yang berlaku. Anda juga memahami bahwa penggunaan proyek ini adalah risiko Anda sendiri dan pengembang proyek ini tidak bertanggung jawab atas akibat yang mungkin timbul dari penggunaan proyek ini.
+
+- Dengan menggunakannya, Anda setuju untuk membebaskan pengembang proyek dari segala tuntutan, klaim, atau tanggung jawab yang mungkin muncul akibat penggunaan atau distribusi proyek ini. Anda setuju bahwa penggunaan proyek ini adalah sepenuhnya atas risiko Anda dan Anda bertanggung jawab untuk memahami dan mematuhi hukum serta etika terkait penggunaan proyek ini.
+
+- Penting untuk diingat bahwa HealthBot.AI menggunakan teknologi model GPT-2 yang umumnya tidak digunakan untuk memberikan jawaban fakta atau informasi medis yang akurat. Model ini mungkin mengandung bias atau informasi yang tidak sepenuhnya valid.
+
+- Informasi yang diberikan oleh HealthBot.AI hanya sebagai referensi tambahan. Proyek ini perlu evaluasi dan validasi lebih lanjut oleh ahli medis untuk memastikan akurasi dan keandalannya.
+
+- Selalu konsultasikan masalah kesehatan Anda dengan dokter atau ahli kesehatan terpercaya untuk diagnosis dan pengobatan yang tepat. Penggunaan HealthBot.AI sebagai sumber informasi medis harus dilakukan dengan kewaspadaan dan pertimbangan lebih lanjut.
+
+- Harap diingat bahwa HealthBot.AI belum siap untuk produksi sebelum dievaluasi oleh ahli medis dan harus digunakan dengan pemahaman akan keterbatasan dan potensi ketidakakuratan informasi yang diberikan.
 ## Catatan
-
-- HealthBot.AI adalah proyek sederhana dan tidak menggantikan konsultasi langsung dengan profesional medis. Informasi yang diberikan oleh chatbot ini hanya sebagai referensi tambahan. Selalu konsultasikan masalah kesehatan Anda dengan dokter atau ahli kesehatan terpercaya untuk diagnosis dan pengobatan yang tepat.
 
 - Kami berharap HealthBot.AI dapat membantu meningkatkan akses informasi kesehatan bagi masyarakat di wilayah terpencil dan dengan akses internet terbatas dalam bahasa Indonesia. Proyek ini juga diarahkan untuk mendukung pengguna dengan laptop spek rendah sehingga dapat digunakan dengan mudah tanpa membebani sumber daya komputer.
 
 - Kami berencana untuk deploy healthbot.AI di set top box bekas dan dijadikan server lokal, sehingga bisa di gunakan di smartphone.
+
+

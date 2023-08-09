@@ -33,8 +33,8 @@ function send() {
   }
 }
 
-eel.expose(bot_resp);
-function bot_resp(response) {
+eel.expose(bot_response);
+function bot_response(response) {
     const message = document.getElementById('messages');
     const send = document.createElement('p');
     const recv = send.cloneNode(true);
@@ -70,12 +70,6 @@ document.querySelector('h1').onclick = function() {
 }
 
 
-var theme = document.getElementsByClassName('theme');
-
-
-if (localStorage.getItem('scheme')) {
-  themeChange(localStorage.getItem('scheme'), localStorage.getItem('scheme2'));
-}
 
 window.onload = function() {
   document.getElementById('messages').style.display =
