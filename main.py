@@ -80,7 +80,7 @@ if not agree_with_disclaimer:
     st.info("Silahkan setujui syarat dan ketentuan di atas sebelum menggunakan aplikasi.")
 
 if agree_with_disclaimer:
-    if prompt := st.chat_input("What is up?"):
+    if prompt := st.chat_input("masukkan pertanyaan"):
         if detect_trigger_keywords(prompt):
             st.warning("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.")
         st.session_state.messages.append({"role": "user", "content": prompt})
