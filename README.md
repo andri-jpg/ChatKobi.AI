@@ -5,8 +5,6 @@
   [![license](https://img.shields.io/github/license/andri-jpg/chatwaifu)](LICENSE)
 </div>
 
-## Work-in-Progress
-
 ## Deskripsi
 
 **ChatKobi.AI** adalah chatbot kesehatan berbasis model GPT-2 yang menggunakan bahasa Indonesia dan dirancang khusus untuk berjalan secara offline. Chatbot ini bertujuan untuk memberikan informasi dan saran kesehatan kepada pengguna di wilayah minim internet atau yang jauh dari fasilitas kesehatan. Selain itu, model GPT-2 yang digunakan dalam proyek ini sangat ringan dan dapat dijalankan di laptop dengan spesifikasi rendah, termasuk laptop dengan RAM hanya 2GB.
@@ -19,7 +17,32 @@
 
 - **Chat Interaktif**: ChatKobi.AI menyediakan antarmuka chat interaktif dalam bahasa Indonesia yang mudah digunakan. Pengguna dapat mengetikkan pertanyaan atau masukan kesehatan dalam bahasa Indonesia dan mendapatkan respons yang relevan dan informatif dari chatbot ini.
 
-## Cara Menggunakan
+## Mode OFFLINE
+
+### Installasi:
+
+- Pastikan anda sudah menginstall python 3.7 keatas
+- Clone repository:
+  ```bash
+  git clone https://github.com/andri-jpg/ChatKobi.AI
+  cd ChatKobi.AI
+  ```
+- Install library yang di butuhkan:
+  ```bash
+  pip install -r requirements.txt
+  
+  ```
+- Jalankan perintah :
+   ```bash
+  streamlit run main.py
+  
+  ```
+Untuk menjalankan di mode offline
+
+## Mode ONLINE
+
+Kunjungi [ChatKobi.AI](https://chatkobi.streamlit.app/)
+ 
 
 ## Disclaimer
 
@@ -45,6 +68,4 @@
 - Kami berencana untuk deploy ChatKobi.AI di set top box bekas dan dijadikan server lokal, sehingga bisa di gunakan di smartphone.
 
 - Dan juga sebagai chatbot di Whatsapp untuk menjangkau lebih banyak pengguna.
-
-- Rencana untuk mengganti framework dengan streamlit
 
