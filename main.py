@@ -4,13 +4,14 @@ import time
 from load_model import Chainer
 
 st.title("ChatKobi.AI")
-
+st.subheader("Chatbot Kesehatan Offline Bahasa Indonesia")
 
 with st.expander("Syarat dan Ketentuan"):
     st.write("""Chatbot ini menyediakan informasi kesehatan umum dan bukan pengganti konsultasi medis langsung dengan profesional kesehatan. Penting untuk selalu berkonsultasi dengan dokter atau profesional yang berwenang untuk diagnosa dan perawatan yang tepat.
 
 Dengan menggunakan chatbot ini, pengguna dianggap telah menyetujui dan memahami ketentuan ini. Penggunaan chatbot ini adalah tanggung jawab pengguna sepenuhnya. Pembuat dan pengembang chatbot tidak bertanggung jawab atas akibat atau kerugian yang mungkin timbul akibat penggunaan informasi dari chatbot ini.
-""")
+
+Informasi lebih lanjut [Klik Disini](https://github.com/andri-jpg/ChatKobi.AI)""")
     agree_with_disclaimer = st.checkbox("Saya Setuju dengan Syarat dan ketentuan yang berlaku.")
 
 generator = Chainer(
