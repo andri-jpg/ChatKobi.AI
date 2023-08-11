@@ -5,8 +5,6 @@
   [![license](https://img.shields.io/github/license/andri-jpg/chatwaifu)](LICENSE)
 </div>
 
-## Work-in-Progress
-
 ## Deskripsi
 
 **ChatKobi.AI** adalah chatbot kesehatan berbasis model GPT-2 yang menggunakan bahasa Indonesia dan dirancang khusus untuk berjalan secara offline. Chatbot ini bertujuan untuk memberikan informasi dan saran kesehatan kepada pengguna di wilayah minim internet atau yang jauh dari fasilitas kesehatan. Selain itu, model GPT-2 yang digunakan dalam proyek ini sangat ringan dan dapat dijalankan di laptop dengan spesifikasi rendah, termasuk laptop dengan RAM hanya 2GB.
@@ -19,7 +17,32 @@
 
 - **Chat Interaktif**: ChatKobi.AI menyediakan antarmuka chat interaktif dalam bahasa Indonesia yang mudah digunakan. Pengguna dapat mengetikkan pertanyaan atau masukan kesehatan dalam bahasa Indonesia dan mendapatkan respons yang relevan dan informatif dari chatbot ini.
 
-## Cara Menggunakan
+## Mode OFFLINE
+
+### Installasi:
+
+- Pastikan anda sudah menginstall python 3.7 keatas
+- Clone repository:
+  ```bash
+  git clone https://github.com/andri-jpg/ChatKobi.AI
+  cd ChatKobi.AI
+  ```
+- Install library yang di butuhkan:
+  ```bash
+  pip install -r requirements.txt
+  
+  ```
+- Jalankan perintah :
+   ```bash
+  streamlit run main.py
+  
+  ```
+Untuk menjalankan di mode offline
+
+## Mode ONLINE
+
+Kunjungi [ChatKobi.AI](https://chatkobi.streamlit.app/)
+ 
 
 ## Disclaimer
 
@@ -38,6 +61,7 @@
 - Selalu konsultasikan masalah kesehatan Anda dengan dokter atau ahli kesehatan terpercaya untuk diagnosis dan pengobatan yang tepat. Penggunaan ChatKobi.AI sebagai sumber informasi medis harus dilakukan dengan kewaspadaan dan pertimbangan lebih lanjut.
 
 - Harap diingat bahwa ChatKobi.AI belum siap untuk produksi sebelum dievaluasi oleh ahli medis dan harus digunakan dengan pemahaman akan keterbatasan dan potensi ketidakakuratan informasi yang diberikan.
+  
 ## Catatan
 
 - Kami berharap ChatKobi.AI dapat membantu meningkatkan akses informasi kesehatan bagi masyarakat di wilayah terpencil dan dengan akses internet terbatas dalam bahasa Indonesia. Proyek ini juga diarahkan untuk mendukung pengguna dengan laptop spek rendah sehingga dapat digunakan dengan mudah tanpa membebani sumber daya komputer.
@@ -46,5 +70,8 @@
 
 - Dan juga sebagai chatbot di Whatsapp untuk menjangkau lebih banyak pengguna.
 
-- Rencana untuk mengganti framework dengan streamlit
-
+## Credit
+- [Andrian syah putra](https://huggingface.co/AndriLawrence/gpt2-chatkobi-ai)
+- [Indonesia-NLP](https://huggingface.co/indonesian-nlp/gpt2-medium-indonesian)
+- [llm-rs](https://github.com/LLukas22/llm-rs-python)
+- [Rustformers](https://github.com/rustformers/llm)
