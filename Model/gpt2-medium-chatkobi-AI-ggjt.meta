@@ -1,0 +1,9 @@
+{
+    "model": "Gpt2",
+    "quantization": "Q4_0",
+    "quantization_version": "V2",
+    "container": "GGJT",
+    "converter": "llm-rs",
+    "hash": "92eaebd81d45cc3bf215715f9202c706e57550e42864f6c909ce34e755903f1b",
+    "base_model": "C:\\Users\\andri\\github\\gpt2-medium-indonesian"
+}

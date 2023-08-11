@@ -15,23 +15,18 @@ class ModelDownloader:
         print("Download completed.")
         
 class Chainer:
-    def __init__(self, model, name):
+    def __init__(self, model):
         self.model_download = ModelDownloader()
         with open('config.json') as self.configuration:
             self.user_config = json.load(self.configuration)
-        meta = f"{model}.meta"
         model = f"{model}.bin"
         self.model = model
-        """
+
         if not Path(model).is_file():
-            self.model_download.download_file(f"", model)
-        if not Path(meta).is_file():
-            self.model_download.download_file(f"", meta)
-        """
-        self.name = name
+            self.model_download.download_file(f"https://huggingface.co/AndriLawrence/gpt2-chatkobi-ai/resolve/main/gpt2-medium-chatkobi-AI-ggjt.bin", model)
+
         
-        self.stop_word = ['\n<EOL>:','<eol>', '<Eol>','pertanyaan :' ]
-        self.stop_words = self.change_stop_words(self.stop_word, self.name)
+        self.stop_words = ['<EOL>','<eol>', '<Eol>','pertanyaan :','Human', 'human', 'Pertanyaan','\n' ]
         session_config = SessionConfig(
             threads=self.user_config['threads'],
             context_length=self.user_config['context_length'],
@@ -52,7 +47,7 @@ class Chainer:
         pertanyaan : {instruction}.
         jawaban :"""
 
-        self.template = self.change_names(template, self.name)
+        self.template = template
         self.prompt = PromptTemplate(
             input_variables=["chat_history", "instruction"],
             template=self.template
@@ -69,18 +64,6 @@ class Chainer:
         self.chain = LLMChain(llm=self.llm, prompt=self.prompt, memory=self.memory)
 
     
-    @staticmethod
-    def change_stop_words(stop_words, name):
-        new_stop_words = []
-        for word in stop_words:
-            new_word = word.replace('pertanyaan', name)
-            new_stop_words.append(new_word)
-        return new_stop_words
-
-    @staticmethod
-    def change_names(template, user_name):
-        template = template.replace("pertanyaan", user_name)
-        return template
     
     def chain(self, input_text):
         prompt = self.prompt.generate_prompt({
@@ -88,6 +71,6 @@ class Chainer:
             "instruction": input_text
         })
         response = self.chain.generate(prompt)
-        self.memory.add_message(input_text, "human")
-        self.memory.add_message(response.choices[0].text.strip(), "ai")
+        self.memory.add_message(input_text, "pertanyaan")
+        self.memory.add_message(response.choices[0].text.strip(), "jawaban")
         return response.choices[0].text.strip()
