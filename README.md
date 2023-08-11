@@ -61,6 +61,7 @@ Kunjungi [ChatKobi.AI](https://chatkobi.streamlit.app/)
 - Selalu konsultasikan masalah kesehatan Anda dengan dokter atau ahli kesehatan terpercaya untuk diagnosis dan pengobatan yang tepat. Penggunaan ChatKobi.AI sebagai sumber informasi medis harus dilakukan dengan kewaspadaan dan pertimbangan lebih lanjut.
 
 - Harap diingat bahwa ChatKobi.AI belum siap untuk produksi sebelum dievaluasi oleh ahli medis dan harus digunakan dengan pemahaman akan keterbatasan dan potensi ketidakakuratan informasi yang diberikan.
+  
 ## Catatan
 
 - Kami berharap ChatKobi.AI dapat membantu meningkatkan akses informasi kesehatan bagi masyarakat di wilayah terpencil dan dengan akses internet terbatas dalam bahasa Indonesia. Proyek ini juga diarahkan untuk mendukung pengguna dengan laptop spek rendah sehingga dapat digunakan dengan mudah tanpa membebani sumber daya komputer.
@@ -69,3 +70,8 @@ Kunjungi [ChatKobi.AI](https://chatkobi.streamlit.app/)
 
 - Dan juga sebagai chatbot di Whatsapp untuk menjangkau lebih banyak pengguna.
 
+## Credit
+- [Andrian syah putra](https://huggingface.co/AndriLawrence/gpt2-chatkobi-ai)
+- [Indonesia-NLP](https://huggingface.co/indonesian-nlp/gpt2-medium-indonesian)
+- [llm-rs](https://github.com/LLukas22/llm-rs-python)
+- [Rustformers](https://github.com/rustformers/llm)
