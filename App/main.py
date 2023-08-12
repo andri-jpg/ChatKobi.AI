@@ -11,7 +11,7 @@ with st.expander("Syarat dan Ketentuan"):
 
 Dengan menggunakan chatbot ini, pengguna dianggap telah menyetujui dan memahami ketentuan ini. Penggunaan chatbot ini adalah tanggung jawab pengguna sepenuhnya. Pembuat dan pengembang chatbot tidak bertanggung jawab atas akibat atau kerugian yang mungkin timbul akibat penggunaan informasi dari chatbot ini.
 
-Informasi lebih lanjut [Klik Disini](https://github.com/andri-jpg/ChatKobi.AI#disclaimer)""")
+Informasi lebih lanjut [Klik Disini](https://github.com/andri-jpg/ChatKobi.AI)""")
     agree_with_disclaimer = st.checkbox("Saya Setuju dengan Syarat dan ketentuan yang berlaku.")
 
 generator = Chainer(
@@ -81,7 +81,7 @@ if not agree_with_disclaimer:
     st.info("Silahkan setujui syarat dan ketentuan di atas sebelum menggunakan aplikasi.")
 
 if agree_with_disclaimer:
-    if prompt := st.chat_input("Masukkan Pertanyaan"):
+    if prompt := st.chat_input("masukkan pertanyaan"):
         if detect_trigger_keywords(prompt):
             st.warning("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.")
         st.session_state.messages.append({"role": "user", "content": prompt})

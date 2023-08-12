@@ -1,0 +1,9 @@
+{
+    "threads": 4,
+    "context_length": 500,
+    "top_p": 0.55,
+    "top_k": 1,
+    "temperature": 0.5,
+    "max_new_tokens": 120,
+    "repetition_penalty": 1.12
+}

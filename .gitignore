@@ -1,2 +1,6 @@
 Model/gpt2-medium-chatkobi-AI-ggjt.bin
 dataset.txt
+App/.next
+App/Model
+App/node_modules
+Model/gpt2-medium-chatkobi-AI-ggjt-v2.bin
