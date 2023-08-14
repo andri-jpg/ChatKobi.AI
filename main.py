@@ -13,13 +13,13 @@ Dengan menggunakan chatbot ini, pengguna dianggap telah menyetujui dan memahami 
 
 Informasi lebih lanjut [Klik Disini](https://github.com/andri-jpg/ChatKobi.AI#disclaimer)""")
     agree_with_disclaimer = st.checkbox("Saya Setuju dengan Syarat dan ketentuan yang berlaku.")
-
+    st.write("🤖 Disclaimer: Saya adalah chatbot yang dirancang untuk menjawab pertanyaan seputar kesehatan. Saat ini, saya belum memiliki kemampuan untuk mengingat pertanyaan sebelumnya. Oleh karena itu, harap diperhatikan bahwa setiap pertanyaan hanya bisa dijawab sekali dan saya tidak dapat melanjutkan dari pertanyaan sebelumnya.")
 generator = Chainer(
-    model='Model/gpt2-medium-chatkobi-AI-ggjt-v2')
+    model='Model/gpt2-medium-chatkobi-ggjt-v2.1')
 
 # Fungsi untuk mengganti kata-kata
 
-words_to_clean = ["<EOL", "Pertanyaan"]
+words_to_clean = ["<EOL", "Pertanyaan", "<br>"]
 
 def clean_res(result):
     cleaned_result = result
@@ -32,7 +32,7 @@ def detect_risk_content(text):
     risk_keywords = [
         "self harm", "bunuh diri", 
         "menyakiti diri", "kehilangan harapan", 
-        "ingin mati", "merasa putus asa"
+        "ingin mati", "merasa putus asa", "<br>", "cara mati"
     ]
     for keyword in risk_keywords:
         if keyword in text.lower():
@@ -61,7 +61,7 @@ risk_warnings = [
 
 trigger_keywords = [
     "obat", "konsultasi", "pengobatan", 
-    "diagnosis", "perawatan", "terapi"
+    "diagnosis", "perawatan", "terapi", "spesialis", "penemu","keluhan","kanker"
 ]
 
 def detect_trigger_keywords(text):
@@ -110,6 +110,9 @@ if agree_with_disclaimer:
                 if detect_risk_content(result_text):
                     st.warning(random.choice(risk_warnings))
                     result_text = "Jawaban disembunyikan karena mengandung konten berisiko."
+                
+                if detect_trigger_keywords(result_text):
+                    st.warning("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.")
 
             with st.chat_message("assistant"):
                 message_placeholder = st.empty()

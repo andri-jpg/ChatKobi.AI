@@ -42,12 +42,7 @@ class Chainer:
             stop_words=self.stop_words
         )
 
-        template = """
-        kamu adalah chatbot kesehatan yang di tugaskan untuk menjawab pertanyaan user yang berkaitan dengan kesehatan, jika user menanyakan sesuatu yang tidak relevan dengan konteks kesehatan, katakan "maaf saya tidak bisa menjawab pertanyaan tersebut".
-        jika kamu tidak tau jawaban dari pertanyaan, jangan membuat jawaban sendiri, balas dengan "maaf saya tidak bisa menjawab pertanyaan tersebut".
-        {chat_history}
-        <Pertanyaan> : {instruction}.
-        <Jawaban> :"""
+        template = self.user_config['template']
 
         self.template = template
         self.prompt = PromptTemplate(
@@ -64,15 +59,4 @@ class Chainer:
         )
 
         self.chain = LLMChain(llm=self.llm, prompt=self.prompt, memory=self.memory)
-
     
-    
-    def chain(self, input_text):
-        prompt = self.prompt.generate_prompt({
-            "chat_history": self.memory.export_memory(),
-            "instruction": input_text
-        })
-        response = self.chain.generate(prompt)
-        self.memory.add_message(input_text, "<Pertanyaan>")
-        self.memory.add_message(response.choices[0].text.strip(), "<Jawaban>")
-        return response.choices[0].text.strip()

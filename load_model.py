@@ -42,10 +42,7 @@ class Chainer:
             stop_words=self.stop_words
         )
 
-        template = """
-        {chat_history}
-        pertanyaan : {instruction}.
-        jawaban :"""
+        template = self.user_config['template']
 
         self.template = template
         self.prompt = PromptTemplate(
@@ -62,15 +59,4 @@ class Chainer:
         )
 
         self.chain = LLMChain(llm=self.llm, prompt=self.prompt, memory=self.memory)
-
     
-    
-    def chain(self, input_text):
-        prompt = self.prompt.generate_prompt({
-            "chat_history": self.memory.export_memory(),
-            "instruction": input_text
-        })
-        response = self.chain.generate(prompt)
-        self.memory.add_message(input_text, "pertanyaan")
-        self.memory.add_message(response.choices[0].text.strip(), "jawaban")
-        return response.choices[0].text.strip()
