@@ -58,5 +58,15 @@ class Chainer:
             callbacks=[StreamingStdOutCallbackHandler()]
         )
 
-        self.chain = LLMChain(llm=self.llm, prompt=self.prompt, memory=self.memory)
-    
+        self.run = LLMChain(llm=self.llm, prompt=self.prompt, memory=self.memory)
+
+
+    def chain(self, input_text):
+            prompt = self.prompt.generate_prompt({
+            "chat_history": self.memory.export_memory(),
+            "instruction": input_text
+        })
+            response = self.chain.generate(prompt)
+            self.memory.add_user_message(input_text, "Pertanyaan : ")
+            self.memory.add_ai_message(response.choices[0].text.strip(), "Jawaban : ")
+            return response.choices[0].text.strip()

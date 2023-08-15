@@ -18,8 +18,9 @@ export default async function (req, res) {
     console.log(responseData); 
     const result = responseData.result;
     const warning = responseData.warning;
+    const restart = responseData.restart;
     
-    res.status(200).json({ result: result, warning : warning});
+    res.status(200).json({ result: result, warning : warning, "restart" : restart});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

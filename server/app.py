@@ -1,4 +1,5 @@
 import random
+from typing import Optional
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from load_model import Chainer
@@ -59,19 +60,41 @@ def detect_trigger_keywords(text):
             return True
     return False
 
+def is_weird_response(response):
+    words = response.strip().split()
+    long_words = [word for word in words if len(word) > 12]
+    return len(long_words) > 0
+    
+MAX_PREV_RESPONSES = 10
+prev_responses = []
+
+def is_rep(response):
+    response_without_whitespace = response.replace(" ", "").replace("\t", "").replace("\n", "")
+    prev_responses.append(response_without_whitespace)
+    
+    if len(prev_responses) > MAX_PREV_RESPONSES:
+        prev_responses.pop(0) 
+    count = prev_responses.count(response_without_whitespace)
+    
+    if count >= 3:  
+        return True
+    else:
+        return False 
+    
 @app.post('/handleinput')
 async def handle_input(request: Request):
+    global generator
     request_data = await request.json()
     user_input = request_data['input']
 
     if detect_risk_content(user_input):
         result_text = random.choice(risk_warnings)
-        warning = False
+        warning, restart= False, False
 
-    else :
-        warning = False
+    else:
+        warning, restart= False, False
         result = generator.chain(user_input)
-        result_text = clean_res(result["text"])
+        result_text = clean_res(result["response"])
 
         if not result_text.strip():
             saran_messages = [
@@ -83,14 +106,24 @@ async def handle_input(request: Request):
             "Saya sedikit bingung dengan pertanyaan Anda. Bisakah Anda mengungkapkan dengan cara yang berbeda?",
             ]
 
-            result_text = random.choice(saran_messages) + "\n\nContoh pertanyaan yang disarankan:\n" + get_random_example_question()
+            result_text = random.choice(saran_messages) + "\n\nJika terus berulang, tolong mulai ulang aplikasi.\nContoh pertanyaan yang disarankan:\n" + get_random_example_question()
+            generator.memory.save_context({"input": user_input}, {"output": result_text})
         if detect_risk_content(result_text):
             result_text = "Jawaban disembunyikan karena mengandung konten berisiko."
+            
         
         if detect_trigger_keywords(user_input) or detect_trigger_keywords(result_text):
             warning = True
+
+        if is_weird_response(result_text) or is_rep(result_text):
+            restart = True
+
+        if restart:
+            generator = Chainer( 
+                model='Model/gpt2-medium-chatkobi-AI-ggjt-v2'
+            )
             
-    return JSONResponse(content={"result": result_text, "warning" : warning}, status_code=200)
+    return JSONResponse(content={"result": result_text, "warning" : warning, "restart" : restart}, status_code=200)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8089)

@@ -1,10 +1,10 @@
 {
     "threads": 4,
-    "context_length": 300,
-    "top_p": 0.56,
-    "top_k": 3,
-    "temperature": 0.3,
+    "context_length": 1300,
+    "top_p": 0.51,
+    "top_k": 2,
+    "temperature": 0.27,
     "max_new_tokens": 120,
     "repetition_penalty": 1.12,
-    "template": "saya belum memiliki kemampuan untuk mengingat pertanyaan sebelumnya, Silakan berikan pertanyaan Anda dan saya akan berusaha memberikan respons yang informatif.\nMaaf, saya hanya bisa menjawab pertanyaan dengan masalah kesehatan. apa yang ingin anda tanyakan?.\nTugas saya adalah menjawab pertanyaan seputar kesehatan. Saya adalah chatbot, bukan manusia.\nanda dapat menanyakan saya pertanyaan seputar kesehatan melalui kolom teks dibawah.\n{chat_history}\nPertanyaan : {instruction}.\nJawaban :"
+    "template": "saya bisa menjawab pertanyaan dengan masalah kesehatan.\nTugas saya adalah menjawab pertanyaan seputar kesehatan. Saya adalah chatbot, bukan manusia.\nanda dapat menanyakan saya pertanyaan seputar kesehatan melalui kolom teks dibawah.\n{chat_history}\nPertanyaan saya : {instruction}.\nJawaban anda :"
 }

@@ -17,7 +17,7 @@ function Home() {
   ]);
 
   module.exports = Home;
-  const [termsAccepted, setTermsAccepted] = useState(false); // New state for terms acceptance
+  const [termsAccepted, setTermsAccepted] = useState(false); 
 
   const messageListRef = useRef(null);
   const textAreaRef = useRef(null);
@@ -57,7 +57,7 @@ function Home() {
   
     setLoading(true);
     setMessages((prevMessages) => [...prevMessages, { message: userInput, type: 'userMessage' }]);
-    console.log("Data yang akan dikirim ke server:", { question: userInput, history: history });
+
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -74,8 +74,11 @@ function Home() {
   
       setUserInput('');
       const data = await response.json();
-      console.log(data)
       setMessages((prevMessages) => [...prevMessages, { message: data.result, type: 'apiMessage' }]);
+      if(data.restart){
+        window.alert("Respon AI aneh terdeteksi. Aplikasi akan direstart.");
+        window.location.reload();
+      }
   
       if (data.warning) {
         window.alert("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.");
@@ -99,11 +102,11 @@ function Home() {
   };
 
   useEffect(() => {
-    if (messages.length >= 3) {
-      setHistory([[messages[messages.length - 2].message, messages[messages.length - 1].message]]);
+    if (messages.length >= 1) {
+      setHistory([messages[messages.length - 1].message]);
     }
   }, [messages]);
-
+  
 
   return (
     <>
@@ -115,7 +118,7 @@ function Home() {
       </Head>
       <div className={styles.topnav}>
         <div className={styles.navlogo}>
-          <a href="/">ChatKobi.AI</a>
+          <a href="https://github.com/andri-jpg/ChatKobi.AI">ChatKobi.AI</a>
         </div>
         <div className={styles.navlinks}>
           {/*<a href="https://github.com/andri-jpg/ChatKobi.AI" target="_blank">GitHub</a>*/}
@@ -200,7 +203,7 @@ function Home() {
               </div>
               <div className={styles.footer}>
                 <p>
-                  Built by <a href="https://github.com/andri-jpg/ChatKobi.ai" target="_blank">Andri Lawrence</a>.
+                  Built by <a href="https://github.com/andri-jpg" target="_blank">Andri Lawrence</a>.
                 </p>
               </div>
             </div>
