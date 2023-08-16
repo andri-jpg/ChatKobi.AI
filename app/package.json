@@ -1,0 +1,26 @@
+{
+  "name": "chatkobi.ai",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "description": "Chatbot kesehatan offline bahasa indonesia",
+  "author": "Andri Lawrence",
+  "main": "pages/index.js",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mui/material": "^5.11.4",
+    "next": "13.4.16",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-markdown": "^6.0.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.4.0"
+  }
+}

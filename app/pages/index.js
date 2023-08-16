@@ -59,12 +59,15 @@ function Home() {
     setMessages((prevMessages) => [...prevMessages, { message: userInput, type: 'userMessage' }]);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('http://127.0.0.1:8089/handleinput', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ question: userInput, history: history }),
+        body: JSON.stringify({
+          input: userInput,
+          history: history,
+        }),
       });
   
       if (!response.ok) {

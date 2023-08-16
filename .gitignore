@@ -7,3 +7,6 @@ Model/gpt2-medium-chatkobi-AI-ggjt-v2.bin
 Model/gpt2-medium-chatkobi-ggjt-v2.1.bin
 server/Model
 chatkobi/release
+server/build
+app-build/model
+app-build/build

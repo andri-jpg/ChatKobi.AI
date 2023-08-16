@@ -21,22 +21,8 @@
 
 ### Installasi:
 
-- Pastikan anda sudah menginstall python 3.7 keatas
-- Clone repository:
-  ```bash
-  git clone https://github.com/andri-jpg/ChatKobi.AI
-  cd ChatKobi.AI
-  ```
-- Install library yang di butuhkan:
-  ```bash
-  pip install -r requirements.txt
-  
-  ```
-- Jalankan perintah :
-   ```bash
-  streamlit run main.py
-  
-  ```
+Download [Installer](https://github.com/andri-jpg/ChatKobi.AI/releases/download/0.1.0/chatkobi_installer.exe)
+Install dan izinkan firewall
 Untuk menjalankan di mode offline
 
 ## Mode ONLINE

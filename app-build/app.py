@@ -4,8 +4,19 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from load_model import Chainer
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = ["*"] 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 generator = Chainer(
     model='Model/gpt2-medium-chatkobi-AI-ggjt-v2'
@@ -80,7 +91,7 @@ def is_rep(response):
         return True
     else:
         return False 
-    
+
 @app.post('/handleinput')
 async def handle_input(request: Request):
     global generator
