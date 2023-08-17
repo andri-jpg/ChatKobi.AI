@@ -15,15 +15,14 @@ class ModelDownloader:
         print("Download completed.")
 
 class Chainer:
-    def __init__(self, model):
+    def __init__(self):
         self.model_download = ModelDownloader()
         with open('config.json') as self.configuration:
             self.user_config = json.load(self.configuration)
-        model = f"{model}.bin"
-        self.model = model
+        self.model = model = "iYT1dHVf8umCW79MwECr.bin"
 
         if not Path(model).is_file():
-            self.model_download.download_file(f"https://huggingface.co/AndriLawrence/gpt2-chatkobi-ai/resolve/main/gpt2-medium-chatkobi-AI-ggjt.bin", model)
+            self.model_download.download_file(f"", model)
 
 
         self.stop_words = ['<EOL>','<eol>', '<Eol>','pertanyaan :','Human', 'human', 'Pertanyaan','\n' ]

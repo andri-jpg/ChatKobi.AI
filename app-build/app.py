@@ -1,5 +1,4 @@
 import random
-from typing import Optional
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from load_model import Chainer
@@ -18,10 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-generator = Chainer(
-    model='Model/gpt2-medium-chatkobi-AI-ggjt-v2'
-)
-
+generator = Chainer()
 words_clean = ["<EOL", "<br>"]
 
 def clean_res(result):
@@ -73,13 +69,14 @@ def detect_trigger_keywords(text):
 
 def is_weird_response(response):
     words = response.strip().split()
-    long_words = [word for word in words if len(word) > 12]
+    long_words = [word for word in words if len(word) > 30]
     return len(long_words) > 0
     
-MAX_PREV_RESPONSES = 10
+MAX_PREV_RESPONSES = 3
 prev_responses = []
 
 def is_rep(response):
+    global prev_responses
     response_without_whitespace = response.replace(" ", "").replace("\t", "").replace("\n", "")
     prev_responses.append(response_without_whitespace)
     
@@ -87,7 +84,8 @@ def is_rep(response):
         prev_responses.pop(0) 
     count = prev_responses.count(response_without_whitespace)
     
-    if count >= 3:  
+    if count >= 2:
+        prev_responses = []
         return True
     else:
         return False 
@@ -129,11 +127,12 @@ async def handle_input(request: Request):
         if is_weird_response(result_text) or is_rep(result_text):
             restart = True
 
+        if user_input == 'restart':
+            restart = True
+
         if restart:
-            generator = Chainer( 
-                model='Model/gpt2-medium-chatkobi-AI-ggjt-v2'
-            )
-            
+            generator = Chainer()
+
     return JSONResponse(content={"result": result_text, "warning" : warning, "restart" : restart}, status_code=200)
 
 if __name__ == "__main__":
