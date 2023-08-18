@@ -1,7 +1,7 @@
 <div align="center">
   <h1>ChatKobi.AI: Chatbot Kesehatan Offline Bahasa Indonesia berbasis AI</h1>
   
-  [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+  [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatkobi.streamlit.app/)
   [![license](https://img.shields.io/github/license/andri-jpg/chatwaifu)](LICENSE)
 </div>
 
@@ -27,7 +27,7 @@ Untuk menjalankan di mode offline
 
 ## Mode ONLINE
 
-Kunjungi [ChatKobi.AI](https://chatkobi.streamlit.app/)
+Kunjungi   [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatkobi.streamlit.app/)
  
 
 ## Disclaimer
