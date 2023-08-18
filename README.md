@@ -21,7 +21,7 @@
 
 ### Installasi:
 
-Download [Installer](https://github.com/andri-jpg/ChatKobi.AI/releases/download/0.1.0/chatkobi_installer.exe)
+Download [Installer](https://github.com/andri-jpg/ChatKobi.AI/releases/)
 Install dan izinkan firewall
 Untuk menjalankan di mode offline
 
