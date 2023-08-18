@@ -1,12 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
+import { Alert, AlertTitle, IconButton, CircularProgress, Checkbox} from '@mui/material';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown'; 
-import CircularProgress from '@mui/material/CircularProgress';
-import { Alert, AlertTitle, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-
 
 
 function Home() {
@@ -105,17 +103,17 @@ function Home() {
       const data = await response.json();
       setMessages((prevMessages) => [...prevMessages, { message: data.result, type: 'apiMessage' }]);
       setShouldReload(data.restart)
-      
-      if (data.restart) {
-        setSeverity("error")
-        setShowAlert(true);
-        setAlertMessage(restartMessage);
-      }
   
       if (data.warning) {
         setSeverity("warning")
         setShowAlert(true);
         setAlertMessage(warnMessage);
+      }
+
+      if (data.restart) {
+        setSeverity("error")
+        setShowAlert(true);
+        setAlertMessage(restartMessage);
       }
   
     } catch (error) {
@@ -260,37 +258,54 @@ function Home() {
             </div>
           </div>
         ) : (
-          <div className={styles.center}>
-            <div className={styles.terms}>
-              <h3>Syarat dan Ketentuan</h3>
-              <br />
-              <p>
-                Chatbot ini menyediakan informasi kesehatan umum dan bukan pengganti konsultasi medis langsung dengan profesional kesehatan.
-                <br />
-                <br />
-                Penting untuk selalu berkonsultasi dengan dokter atau profesional yang berwenang untuk diagnosa dan perawatan yang tepat.
-                Dengan menggunakan chatbot ini, pengguna dianggap telah menyetujui dan memahami ketentuan ini.
-              </p>
-              <br />
-              <p>
-                Penggunaan chatbot ini adalah tanggung jawab pengguna sepenuhnya. Pembuat dan pengembang chatbot tidak bertanggung jawab atas akibat atau kerugian yang mungkin timbul akibat penggunaan informasi dari chatbot ini.
-              </p>
-              <br />
-              <p>
-                Informasi lebih lanjut <a href="https://github.com/andri-jpg/ChatKobi.AI#disclaimer" target="_blank" style={{ color: 'green' }}>Klik Disini</a>.
-              </p>
-              <br />
-              <label>
-                <input
-                  type="checkbox"
-                  checked={termsAccepted}
-                  onChange={() => setTermsAccepted(!termsAccepted)}
-                />
-                <span style={{ width: '10px', display: 'inline-block' }}></span>
-                Saya Setuju dengan Syarat dan ketentuan yang berlaku.
-              </label>
-            </div>
-          </div>
+        <div className={styles.center}>
+          <div className={styles.terms}>
+          <h3>Syarat dan Ketentuan</h3>
+          <br />
+          <p>
+          Chatbot ini menyediakan informasi kesehatan umum dan bukan pengganti konsultasi medis langsung dengan profesional kesehatan.
+          <br />
+          <br />
+          Penting untuk selalu berkonsultasi dengan dokter atau profesional yang berwenang untuk diagnosa dan perawatan yang tepat.
+          Dengan menggunakan chatbot ini, pengguna dianggap telah menyetujui dan memahami ketentuan ini.
+          </p>
+          <br />
+          <p>
+          Penggunaan chatbot ini adalah tanggung jawab pengguna sepenuhnya. Pembuat dan pengembang chatbot tidak bertanggung jawab atas akibat atau kerugian yang mungkin timbul akibat penggunaan informasi dari chatbot ini.
+          </p>
+          <br />
+          <p>
+          Informasi lebih lanjut <a href="https://github.com/andri-jpg/ChatKobi.AI#disclaimer" target="_blank" style={{ color: 'green' }}>Klik Disini</a>.
+          </p>
+
+          <br/>
+          <h4>Contoh Prompt yang baik :</h4>
+          <br />
+          <ul>
+          <li style={{ marginLeft: '20px' }}>Kenapa telinga saya gatal?</li>
+          <li style={{ marginLeft: '20px' }}>Kalau susah buang air besar itu kenapa ya?</li>
+          <li style={{ marginLeft: '20px' }}>Apa itu kolestrol?</li>
+          <li style={{ marginLeft: '20px' }}>cara mencegah kolestrol tinggi gimana ya?</li>
+          </ul>
+    <br/>
+    <Alert severity="info" style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white' }}>
+      Centang syarat dan ketentuan dibawah untuk melanjutkan
+    </Alert>
+    
+    <br/>
+    <div className={styles.terms}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Checkbox
+          checked={termsAccepted}
+          onChange={() => setTermsAccepted(!termsAccepted)}
+          style={{ color: 'white' }}
+        />
+        <span style={{ width: '10px', display: 'inline-block' }}></span>
+        <span style={{ color: 'white' }}>Saya Setuju dengan Syarat dan ketentuan yang berlaku.</span>
+      </div>
+    </div>
+  </div>
+</div>
         )}
       </main>
     </>

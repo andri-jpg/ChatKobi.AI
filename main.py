@@ -3,6 +3,16 @@ import random
 import time
 from load_model import Chainer
 
+def get_generator():
+    if not hasattr(st.session_state, 'generator'):
+        st.session_state.generator = Chainer()
+    return st.session_state.generator
+
+def init_prev_responses():
+    if not hasattr(st.session_state, 'prev_responses'):
+        st.session_state.prev_responses = []
+    return st.session_state.prev_responses
+    
 st.title("ChatKobi.AI")
 st.subheader("Chatbot Kesehatan Offline Bahasa Indonesia")
 
@@ -13,9 +23,7 @@ Dengan menggunakan chatbot ini, pengguna dianggap telah menyetujui dan memahami 
 
 Informasi lebih lanjut [Klik Disini](https://github.com/andri-jpg/ChatKobi.AI#disclaimer)""")
     agree_with_disclaimer = st.checkbox("Saya Setuju dengan Syarat dan ketentuan yang berlaku.")
-    st.write("🤖 Disclaimer: Saya adalah chatbot yang dirancang untuk menjawab pertanyaan seputar kesehatan. Saat ini, saya belum memiliki kemampuan untuk mengingat pertanyaan sebelumnya. Oleh karena itu, harap diperhatikan bahwa setiap pertanyaan hanya bisa dijawab sekali dan saya tidak dapat melanjutkan dari pertanyaan sebelumnya.")
-generator = Chainer(
-    model='Model/gpt2-medium-chatkobi-ggjt-v2.1')
+
 
 # Fungsi untuk mengganti kata-kata
 
@@ -70,6 +78,29 @@ def detect_trigger_keywords(text):
             return True
     return False
 
+def is_weird_response(response):
+    words = response.strip().split()
+    long_words = [word for word in words if len(word) > 30]
+    return len(long_words) > 0
+
+MAX_PREV_RESPONSES = 3
+prev_responses = init_prev_responses()
+
+def is_rep(response):
+    global prev_responses
+    response_without_whitespace = response.replace(" ", "").replace("\t", "").replace("\n", "")
+    prev_responses.append(response_without_whitespace)
+    
+    if len(prev_responses) > MAX_PREV_RESPONSES:
+        prev_responses.pop(0) 
+    count = prev_responses.count(response_without_whitespace)
+    
+    if count >= 2:
+        prev_responses = []
+        return True
+    else:
+        return False 
+    
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -81,6 +112,7 @@ if not agree_with_disclaimer:
     st.info("Silahkan setujui syarat dan ketentuan di atas sebelum menggunakan aplikasi.")
 
 if agree_with_disclaimer:
+    generator = get_generator()
     if prompt := st.chat_input("Masukkan Pertanyaan"):
         if detect_trigger_keywords(prompt):
             st.warning("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.")
@@ -94,7 +126,8 @@ if agree_with_disclaimer:
                 result_text = ""
             else:
                 result = generator.chain(prompt)
-                result_text = clean_res(result["text"])
+
+                result_text = clean_res(result["response"])
 
                 if not result_text.strip():
                     saran_messages = [
@@ -106,13 +139,17 @@ if agree_with_disclaimer:
                 "Saya sedikit bingung dengan pertanyaan Anda. Bisakah Anda mengungkapkan dengan cara yang berbeda?",
             ]
                     result_text = random.choice(saran_messages) + "\n\nContoh pertanyaan yang disarankan:\n" + get_random_example_question()
-
+                    generator.memory.save_context({"input": prompt}, {"output": result_text})
                 if detect_risk_content(result_text):
                     st.warning(random.choice(risk_warnings))
                     result_text = "Jawaban disembunyikan karena mengandung konten berisiko."
                 
                 if detect_trigger_keywords(result_text):
                     st.warning("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.")
+                
+                if is_weird_response(result_text) or is_rep(result_text):
+                    st.error("Respon AI aneh terdeteksi, Silahkan reload halaman ini", icon='🚨')
+
 
             with st.chat_message("assistant"):
                 message_placeholder = st.empty()

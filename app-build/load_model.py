@@ -19,7 +19,7 @@ class Chainer:
         self.model_download = ModelDownloader()
         with open('config.json') as self.configuration:
             self.user_config = json.load(self.configuration)
-        self.model = model = "iYT1dHVf8umCW79MwECr.bin"
+        self.model = model = "2midguifSfFt5SbHJsxP.bin"
 
         if not Path(model).is_file():
             self.model_download.download_file(f"", model)
@@ -49,7 +49,7 @@ class Chainer:
             template=self.template
         )
 
-        self.memory = ConversationBufferWindowMemory(k=3,memory_key="chat_history",human_prefix='Pertanyaan saya ', ai_prefix='Jawaban kamu ')
+        self.memory = ConversationBufferWindowMemory(k=2,memory_key="chat_history",human_prefix='Pertanyaan saya ', ai_prefix='Jawaban anda ')
 
         self.llm = RustformersLLM(
             model_path_or_repo_id=self.model,
