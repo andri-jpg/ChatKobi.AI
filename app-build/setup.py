@@ -6,7 +6,7 @@ executables = [
 
 setup(
     name="ChatKobi",
-    version="0.1",
+    version="0.2",
     description="Chatbot kesehatan offline bahasa indonesia",
     options={"build_exe": {"packages": ["subprocess", "win32gui", "win32con"]}},
     executables=executables

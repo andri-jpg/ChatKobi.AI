@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "chatkobi.ai"
-#define MyAppVersion "0.1.0"
+#define MyAppVersion "0.2.0"
 #define MyAppPublisher "Andri Lawrence"
 #define MyAppURL "https://www.github.com/andri-jpg"
 #define MyAppExeName "chatkobi.exe"
@@ -10,7 +10,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{FA6CF5D9-DC9C-41D2-800E-BF02152CCBE5}
+AppId={{465D0F40-9763-43B1-832A-0F1716C8F630}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -22,8 +22,8 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputDir=C:\Users\andri\github
-OutputBaseFilename=chatkobi_installer
+OutputDir=C:\Users\andri\github\Healthbot.AI
+OutputBaseFilename=chatkobi.ai 0.2.0
 SetupIconFile=C:\Users\andri\github\Healthbot.AI\app\src-tauri\icons\icon.ico
 Compression=lzma
 SolidCompression=yes
@@ -36,15 +36,17 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\andri\github\Healthbot.AI\app-build\build\exe.win-amd64-3.9\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\andri\github\Healthbot.AI\app-build\build\exe.win-amd64-3.9\a\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\andri\github\Healthbot.AI\app-build\build\exe.win-amd64-3.9\app.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\andri\github\Healthbot.AI\app-build\build\exe.win-amd64-3.9\chatkobi.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\andri\github\Healthbot.AI\app-build\build\exe.win-amd64-3.9\chatkobi_frontend.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\andri\github\Healthbot.AI\app-build\build\exe.win-amd64-3.9\config.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\andri\github\Healthbot.AI\app-build\build\exe.win-amd64-3.9\frozen_application_license.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\andri\github\Healthbot.AI\app-build\build\exe.win-amd64-3.9\python3.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\andri\github\Healthbot.AI\app-build\build\exe.win-amd64-3.9\python39.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\a\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\2midguifSfFt5SbHJsxP.bin"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\2midguifSfFt5SbHJsxP.meta"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\app.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\chatkobi.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\chatkobi_frontend.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\config.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\frozen_application_license.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\python3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\andri\github\Healthbot.AI\app-build\app\python39.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
