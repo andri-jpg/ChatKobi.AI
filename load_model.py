@@ -1,6 +1,6 @@
 import json
-from llm_rs.langchain.langchain import RustformersLLM
-from llm_rs.config import SessionConfig, GenerationConfig
+from llm_rs.langchain import RustformersLLM
+from llm_rs import SessionConfig, GenerationConfig
 from langchain import PromptTemplate
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferWindowMemory
