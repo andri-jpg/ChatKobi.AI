@@ -1,7 +1,2 @@
 streamlit
-llm-rs
-langchain
 llm-rs[langchain]
-cx-freeze
-uvicorn
-fastapi

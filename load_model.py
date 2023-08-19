@@ -19,7 +19,7 @@ class Chainer:
         self.model_download = ModelDownloader()
         with open('config.json') as self.configuration:
             self.user_config = json.load(self.configuration)
-        self.model = model = "2midguifSfFt5SbHJsxP.bin"
+        self.model = model = "1SdjAt39Mjfi2mklO.bin"
 
         if not Path(model).is_file():
             self.model_download.download_file(f"", model)
