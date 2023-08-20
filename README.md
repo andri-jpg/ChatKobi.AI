@@ -6,7 +6,7 @@
 </div>
 
 <div align="center">
-  <img src="https://github.com/andri-jpg/ChatKobi.AI/assets/91838310/0fdc548c-fd1e-4f7b-801d-6ab99c1e3b32" width="auto" height="300">
+ <a href="https://zippyimage.com/image/iHTzUI"><img src="https://bg-so-1.zippyimage.com/2023/08/20/2c51473d18fad27a8b3d50d5ddbc2477.jpg" alt="2c51473d18fad27a8b3d50d5ddbc2477.jpg" border="0" /></a>
 
 
 </div>
