@@ -5,6 +5,13 @@
   [![license](https://img.shields.io/github/license/andri-jpg/chatwaifu)](LICENSE)
 </div>
 
+<div align="center">
+  <img src="https://github.com/andri-jpg/ChatKobi.AI/assets/91838310/0fdc548c-fd1e-4f7b-801d-6ab99c1e3b32" width="auto" height="300">
+
+
+</div>
+
+  
 ## Deskripsi
 
 **ChatKobi.AI** adalah chatbot kesehatan berbasis model GPT-2 yang menggunakan bahasa Indonesia dan dirancang khusus untuk berjalan secara offline. Chatbot ini bertujuan untuk memberikan informasi dan saran kesehatan kepada pengguna di wilayah minim internet atau yang jauh dari fasilitas kesehatan. Selain itu, model GPT-2 yang digunakan dalam proyek ini sangat ringan dan dapat dijalankan di laptop dengan spesifikasi rendah, termasuk laptop dengan RAM hanya 2GB.
