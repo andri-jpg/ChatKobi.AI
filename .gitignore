@@ -21,7 +21,6 @@ app-build/output
 chatkobi.ai 0.2.0.exe
 1SdjAt39Mjfi2mklO.bin
 docker
-app-build/
 app_no_console.py
 gpt2
 Model
@@ -32,3 +31,5 @@ rust/gpt2-medium-chatkobi-ggjt-v2.1.bin
 rust/1SdjAt39Mjfi2mklO.bin
 rust/main.rs
 rust/1SdjAt39Mjfi2mklO.meta
+app-build/LICENSE.txt
+app-build/app.exe
