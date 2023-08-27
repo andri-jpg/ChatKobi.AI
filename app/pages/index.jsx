@@ -1,17 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
-import { Alert, AlertTitle, IconButton, CircularProgress, Checkbox} from '@mui/material';
+import { Alert, CircularProgress, Checkbox, Button} from '@mui/material';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown'; 
-import CloseIcon from '@mui/icons-material/Close';
+import Popup from './Popup';
 
 
 function Home() {
+  const [popupOpen, setPopupOpen] = useState(false);
   const [userInput, setUserInput] = useState('');
+  const restartInput = 'restart';
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [shouldReload, setShouldReload] = useState(false);
@@ -21,6 +22,10 @@ function Home() {
       type: 'apiMessage',
     },
   ]);
+  const handleRestartInput = () => {
+    setUserInput(restartInput);
+  };
+  
 
   module.exports = Home;
   const [termsAccepted, setTermsAccepted] = useState(false); 
@@ -29,21 +34,35 @@ function Home() {
   const messageListRef = useRef(null);
   const textAreaRef = useRef(null);
 
-  
+  useEffect(() => {
+    if (userInput === 'restart' && textAreaRef.current) {
+      textAreaRef.current.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 'Enter',
+          keyCode: 13,
+          which: 13,
+          bubbles: true,
+        })
+      );
+      window.location.reload();
+      setUserInput('');
+    }
+  }, [userInput]);
+
   useEffect(() => {
     let timer;
-    if (showAlert) {
+    if (popupOpen) {
       timer = setTimeout(() => {
-        setShowAlert(false);
+        setPopupOpen(false);
         setAlertMessage("");
         setSeverity("");
         if (shouldReload) {
           window.location.reload();
         }
-      }, 6000);
+      }, 8000);
     }
     return () => clearTimeout(timer);
-  }, [showAlert, shouldReload]);
+  }, [popupOpen, shouldReload]);
 
   useEffect(() => {
     const messageList = messageListRef.current;
@@ -81,6 +100,7 @@ function Home() {
     setLoading(true);
     setMessages((prevMessages) => [...prevMessages, { message: userInput, type: 'userMessage' }]);
 
+
     try {
       const response = await fetch('http://127.0.0.1:8089/handleinput', {
         method: 'POST',
@@ -106,13 +126,13 @@ function Home() {
   
       if (data.warning) {
         setSeverity("warning")
-        setShowAlert(true);
+        setPopupOpen(true);
         setAlertMessage(warnMessage);
       }
 
       if (data.restart) {
         setSeverity("error")
-        setShowAlert(true);
+        setPopupOpen(true);
         setAlertMessage(restartMessage);
       }
   
@@ -127,6 +147,9 @@ function Home() {
     if (e.key === 'Enter' && userInput) {
       if (!e.shiftKey && userInput) {
         handleSubmit(e);
+        if (shouldReload) {
+          window.location.reload();
+        }
       }
     } else if (e.key === 'Enter') {
       e.preventDefault();
@@ -153,22 +176,18 @@ function Home() {
           <a href="https://github.com/andri-jpg/ChatKobi.AI">ChatKobi.AI</a>
         </div>
         <div className={styles.navlinks}>
-  {showAlert && (
-    <div className={`alert-container ${showAlert ? 'fade-out' : ''}`}>
-      <Alert severity={severity}>
-        <AlertTitle>Peringatan</AlertTitle>
-        {alertMessage}
-        {severity !== "error" && (
-          <IconButton
-            aria-label="close"
-            color="inherit"
-            size="small"
-            onClick={() => setShowAlert(false)}
-          >
-            <CloseIcon fontSize="inherit" />
-          </IconButton>
-        )}
-      </Alert>
+        {termsAccepted && (
+            <Button
+              variant="text"
+              onClick={handleRestartInput}
+              className={styles.restartLinkButton}
+            >
+              Restart
+            </Button>
+          )}
+        
+  {popupOpen && (
+    <div className={`alert-container ${popupOpen ? 'fade-out' : ''}`}>   
     </div>
   )}
 </div>
@@ -252,7 +271,7 @@ function Home() {
               </div>
               <div className={styles.footer}>
                 <p>
-                  Built by <a href="https://github.com/andri-jpg" target="_blank">Andri Lawrence</a>.
+                  Built by <a href="https://github.com/andri-jpg">Andri Lawrence</a>.
                 </p>
               </div>
             </div>
@@ -275,7 +294,7 @@ function Home() {
           </p>
           <br />
           <p>
-          Informasi lebih lanjut <a href="https://github.com/andri-jpg/ChatKobi.AI#disclaimer" target="_blank" style={{ color: 'green' }}>Klik Disini</a>.
+          Informasi lebih lanjut <a href="https://github.com/andri-jpg/ChatKobi.AI#disclaimer" style={{ color: 'green' }}>Klik Disini</a>.
           </p>
 
           <br/>
@@ -288,8 +307,20 @@ function Home() {
           <li style={{ marginLeft: '20px' }}>cara mencegah kolestrol tinggi gimana ya?</li>
           </ul>
     <br/>
-    <Alert severity="info" style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white' }}>
-      Centang syarat dan ketentuan dibawah untuk melanjutkan
+    <Alert severity='info' style={{ backgroundColor: 'rgba(25, 25, 85, 0.2)', color: 'white' }}>
+  Jika respon Chatbot sudah mulai aneh, silahkan tekan tombol{' '}
+  <span
+    style={{
+      color: 'cyan',
+      cursor: 'pointer',
+    }}
+    onClick={handleRestartInput}
+  >
+    restart
+  </span>{' '}
+</Alert>
+    <Alert severity="success" style={{ backgroundColor: 'rgba(25, 25, 85, 0.2)', color: 'white',display: 'flex', alignItems: 'center'}}>
+      Centang syarat dan ketentuan dibawah untuk melanjutkan 👇
     </Alert>
     
     <br/>
@@ -306,6 +337,9 @@ function Home() {
     </div>
   </div>
 </div>
+        )}
+        {popupOpen && ( 
+          <Popup open={popupOpen} onClose={() => setPopupOpen(false)} message={alertMessage} severity={severity} />
         )}
       </main>
     </>

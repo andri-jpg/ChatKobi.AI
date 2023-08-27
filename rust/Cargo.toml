@@ -7,10 +7,9 @@ edition = "2021"
 
 [dependencies]
 llm = { git = "https://github.com/rustformers/llm" , branch = "main" }
-rand = "0.8.5"
-pyo3 = "0.15"
-llm-chain = "0.12.0"
-langchain = "0.2.2"
+llm-chain = "0.12.3"
+llm-chain-local = "0.12.3"
+tokio = { version = "1.32.0", features = ["full"] }
 
 [[bin]]
 name = "rust"
