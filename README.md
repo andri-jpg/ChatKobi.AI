@@ -34,7 +34,7 @@ Untuk menjalankan di mode offline
 
 ## Mode ONLINE
 
-Kunjungi   [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatkobi.streamlit.app/)
+Kunjungi [Chatkobi.ai](https://luminespace.my.id/chatkobi)
  
 
 ## Disclaimer
