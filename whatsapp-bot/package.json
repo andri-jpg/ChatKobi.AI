@@ -1,0 +1,20 @@
+{
+  "name": "Moec",
+  "version": "1.0.0",
+  "description": "Template Whatsapp Bot",
+  "main": "src/index.js",
+  "author": "Takahashi Izumi C",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "pretty": "prettier --write \"src/**/*.js\""
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.4.0",
+    "qrcode-terminal": "^0.12.0",
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.2"
+  }
+}
