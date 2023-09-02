@@ -67,3 +67,4 @@ Untuk menjalankan di mode offline
 - [Indonesia-NLP](https://huggingface.co/indonesian-nlp/gpt2-medium-indonesian)
 - [llm-rs](https://github.com/LLukas22/llm-rs-python)
 - [Rustformers](https://github.com/rustformers/llm)
+- [Moec](https://github.com/miruchigawa/Moec)

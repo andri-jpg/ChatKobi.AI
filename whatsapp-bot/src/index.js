@@ -13,7 +13,7 @@ event.get_messages = async (ctx, obj) => {
 
  
   if (messageText.indexOf('!') === -1) {
-    await obj.reply('Gunakan !tanya untuk bertanya kepada chatkobi\n*Contoh : !tanya apa itu diabetes?.*\n*Contoh !tanya bagaimana cara mengatasi kesemutan?*\nUntuk informasi lebih lanjut kirim pesan *!info*');
+    await obj.reply('Gunakan *!tanya* untuk bertanya kepada chatkobi\n*Contoh : !tanya apa itu diabetes?.*\n*Contoh !tanya bagaimana cara mengatasi kesemutan?*\nUntuk informasi lebih lanjut kirim pesan *!info*');
   }
 };
 
