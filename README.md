@@ -34,7 +34,8 @@ Untuk menjalankan di mode offline
 
 ## Mode ONLINE
 
-Kunjungi [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatkobi.streamlit.app/)
+- Kunjungi [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatkobi.streamlit.app/)
+- [Bot Whatsapp](https://wa.me/6285845789195)
  
 
 ## Disclaimer
@@ -59,9 +60,7 @@ Kunjungi [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_bl
 
 - Kami berharap ChatKobi.AI dapat membantu meningkatkan akses informasi kesehatan bagi masyarakat di wilayah terpencil dan dengan akses internet terbatas dalam bahasa Indonesia. Proyek ini juga diarahkan untuk mendukung pengguna dengan laptop spek rendah sehingga dapat digunakan dengan mudah tanpa membebani sumber daya komputer.
 
-- Kami berencana untuk deploy ChatKobi.AI di set top box bekas dan dijadikan server lokal, sehingga bisa di gunakan di smartphone.
-
-- Dan juga sebagai chatbot di Whatsapp untuk menjangkau lebih banyak pengguna.
+- Kami berencana untuk deploy ChatKobi.AI di set top box bekas dan dijadikan server lokal, sehingga bisa di gunakan di smartphone (Gpt2 tidak support ARM, rencana di batalkan)
 
 ## Credit
 - [Andrian syah putra](https://huggingface.co/AndriLawrence/gpt2-chatkobi-ai)
