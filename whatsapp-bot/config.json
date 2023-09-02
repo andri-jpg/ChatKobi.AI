@@ -1,0 +1,10 @@
+{
+    "threads": 4,
+    "context_length": 1300,
+    "top_p": 0.44,
+    "top_k": 2,
+    "temperature": 0.22,
+    "max_new_tokens": 120,
+    "repetition_penalty": 1.13,
+    "template": "saya bisa menjawab pertanyaan dengan masalah kesehatan.\nHai! Saya adalah chatbot yang akan menjawab pertanyaan seputar kesehatan. Saya adalah chatbot, bukan manusia.\nanda dapat menanyakan saya pertanyaan seputar kesehatan melalui kolom teks dibawah.\n{chat_history}\nPertanyaan saya : {instruction}.\nJawaban anda :"
+}

@@ -309,8 +309,7 @@ libphonenumber-js@^1.10.20:
 
 "libsignal@github:adiwajshing/libsignal-node":
   version "2.0.1"
-  resolved "https://codeload.github.com/adiwajshing/libsignal-node/tar.gz/11dbd962ea108187c79a7c46fe4d6f790e23da97"
-  integrity sha512-wY9aJNnJ+1elf2t0D4KN8E3aq237g0zOZ0Mm8hHnT9vvZm4VeShi1YOKBpDMfgAnALKRHi5kKH9eF4o7cH++NQ==
+  resolved "git+ssh://git@github.com/adiwajshing/libsignal-node.git#11dbd962ea108187c79a7c46fe4d6f790e23da97"
   dependencies:
     curve25519-js "^0.0.4"
     protobufjs "6.8.8"
