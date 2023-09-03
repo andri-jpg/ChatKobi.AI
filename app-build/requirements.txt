@@ -1,0 +1,6 @@
+cx_freeze
+llm-rs
+llm-rs[langchain]
+pyinstaller
+uvicorn
+fastapi

@@ -38,6 +38,13 @@ Untuk menjalankan di mode offline
 - [Bot Whatsapp](https://wa.me/6285845789195)
  
 
+## Development
+
+```python
+pip install requirements.txt
+python -m streamlit run main.py
+```
+
 ## Disclaimer
 
 - ChatKobi.AI adalah proyek sederhana dan tidak menggantikan konsultasi langsung dengan para profesional medis. Informasi yang diberikan oleh chatbot ini hanya sebagai referensi tambahan. Selalu konsultasikan dokter atau ahli kesehatan yang terpercaya untuk diagnosis dan pengobatan yang akurat terkait masalah kesehatan Anda.
