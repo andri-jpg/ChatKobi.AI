@@ -13,5 +13,5 @@ python setup.py build
 # Build installer
 
 - Masukkan app.exe, chatkobi.exe, dan file tauri build single executable kedalam satu folder.
-- Masukkan juga model.bin, config dan library yang dikemas ke filder yang sama.
+- Masukkan juga model.bin, config dan library yang dikemas ke folder yang sama.
 - Build installer dengan inno setup, mengikut script file iss di dalam folder. 
