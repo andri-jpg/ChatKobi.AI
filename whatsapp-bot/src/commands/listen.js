@@ -1,5 +1,7 @@
 import { config } from '../config.js';
 import fs from 'fs/promises';
+import { writeFile } from 'fs/promises'
+import { downloadMediaMessage } from '@whiskeysockets/baileys'
 
 async function listCommands() {
   const path = `./src/commands/prefixed/`;

@@ -1,0 +1,20 @@
+[package]
+name = "native"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1"
+flutter_rust_bridge = "1"
+tokio = { version = "1.32.0", features = ["full"] }
+llm = { git = "https://github.com/rustformers/llm.git", default-features = false, features = ["models"] }
+llm-base = { git = "https://github.com/rustformers/llm.git" }
+serde = "1.0.163"
+rand = { version = "0.8.5" }
+regex = { version = "1.9.5" }
+lazy_static = "1.4"
+
+[lib]
+crate-type = ["cdylib"]

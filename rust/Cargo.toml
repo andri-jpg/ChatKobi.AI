@@ -6,10 +6,14 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-llm = { git = "https://github.com/rustformers/llm" , branch = "main" }
-llm-chain = "0.12.3"
-llm-chain-local = "0.12.3"
+anyhow = "1"
 tokio = { version = "1.32.0", features = ["full"] }
+llm = { git = "https://github.com/rustformers/llm.git", default-features = false, features = ["models"] }
+llm-base = { git = "https://github.com/rustformers/llm.git" }
+serde = "1.0.163"
+rand = { version = "0.8.5" }
+regex = { version = "1.9.5" }
+libc = "0.2"
 
 [[bin]]
 name = "rust"

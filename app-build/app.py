@@ -1,9 +1,17 @@
 import random
-from fastapi import FastAPI, Request
+import logging
+import imghdr
+from fastapi import FastAPI, Request, UploadFile
 from fastapi.responses import JSONResponse
 from load_model import Chainer
+import pandas as pd
 import uvicorn
+from PIL import Image
+import fuzzywuzzy as fuzz
+import pytesseract
 from fastapi.middleware.cors import CORSMiddleware
+
+logging.basicConfig(level=logging.INFO)  
 
 origins = ["*"] 
 
@@ -16,6 +24,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+df = pd.read_csv('index_obat.csv')
+database_obat = df['obat'].tolist()
+ambang_batas = 70
 
 generator = Chainer()
 words_clean = ["<EOL", "<br>"]
@@ -90,10 +102,46 @@ def is_rep(response):
     else:
         return False 
 
+@app.post('/handleimage')
+async def handle_image(file: UploadFile, request: Request):
+
+
+    print('image received')
+    with open('uploaded_image.jpg', 'wb') as f:
+        f.write(file.file.read())
+
+    image = Image.open('uploaded_image.jpg')
+    teks = pytesseract.image_to_string(image)
+    valid_image_types = ["jpeg", "jpg", "png"]
+    image_type = imghdr.what('uploaded_image.jpg')
+
+    kata_kata = teks.split()
+    kecocokan_tertinggi = 0
+    obat_tercocok = None
+
+    for kata in kata_kata:
+        for obat in database_obat:
+            skor_kecocokan = fuzz.ratio(kata, obat)
+            if skor_kecocokan > ambang_batas and skor_kecocokan > kecocokan_tertinggi:
+                obat_tercocok = obat
+                kecocokan_tertinggi = skor_kecocokan
+
+    if obat_tercocok is not None:
+        result = f"Gambar mungkin adalah obat {obat_tercocok}."
+        result += f"\nKemungkinan obat tercocok: {obat_tercocok} ({kecocokan_tertinggi}%)"
+    else:
+        result = teks
+        result += "\nTidak ada kecocokan dengan database obat."
+    if image_type not in valid_image_types:
+            return JSONResponse(content={"result": "Format gambar tidak valid."}, status_code=400)
+    return JSONResponse(content={"result": result}, status_code=200)
+
+
 @app.post('/handleinput')
 async def handle_input(request: Request):
     global generator
     request_data = await request.json()
+    print(request)
     user_input = request_data['input']
 
     if detect_risk_content(user_input):
@@ -103,7 +151,8 @@ async def handle_input(request: Request):
     else:
         warning, restart= False, False
         result = generator.chain(user_input)
-        result_text = clean_res(result["response"])
+        result_text = clean_res(result["response"]).strip()
+        
 
         if not result_text.strip():
             saran_messages = [

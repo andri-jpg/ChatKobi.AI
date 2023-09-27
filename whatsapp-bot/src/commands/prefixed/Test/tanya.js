@@ -28,6 +28,8 @@ export async function run(ctx, obj) {
       await obj.reply('Harap diingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan...');
     }
     if (data.restart) {
+      await obj.reply(id,
+        { audio : {url:''}})
       await obj.reply('Chatbot bermasalah dan sedang melakukan restart, tunggu sebentar...');
      
       await new Promise((resolve) => setTimeout(resolve, 5000));
