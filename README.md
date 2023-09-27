@@ -23,6 +23,10 @@
 - **Ringan dan Efisien**: Model GPT-2 yang digunakan dalam proyek ini telah dioptimalkan untuk ukuran yang lebih kecil, sehingga mengurangi kebutuhan memori dan daya komputasi. Dengan demikian, ChatKobi.AI dapat berjalan lancar di laptop dengan spesifikasi rendah dengan ram hanya 2GB.
 
 - **Chat Interaktif**: ChatKobi.AI menyediakan antarmuka chat interaktif dalam bahasa Indonesia yang mudah digunakan. Pengguna dapat mengetikkan pertanyaan atau masukan kesehatan dalam bahasa Indonesia dan mendapatkan respons yang relevan dan informatif dari chatbot ini.
+- **Safety Output**: Chatkobi.AI dilengkapi dengan algoritma untuk menangani input dan output yang mungkin membahayakan pengguna, seperti topik bunuh diri, menyakiti diri sendiri dan lain sebagainya.
+- **Demonstrasi Tampilan pengguna dan fitur safety**
+  
+![InShot_20230904_140155474](https://github.com/andri-jpg/ChatKobi.AI/assets/91838310/9e13a4d6-815e-4a4a-b969-ec76d2c4a772)
 
 ## Mode OFFLINE
 
