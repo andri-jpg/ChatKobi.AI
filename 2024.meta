@@ -1,0 +1,9 @@
+{
+    "model": "Gpt2",
+    "quantization": "Q5_1",
+    "quantization_version": "V2",
+    "container": "GGML",
+    "converter": "llm-rs",
+    "hash": "26a6945232debe92f50144903440bddeac937af86125a8a4c30d42c17316a794",
+    "base_model": "gpt2"
+}
