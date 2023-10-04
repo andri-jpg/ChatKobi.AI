@@ -19,7 +19,7 @@ class Chainer:
         self.model_download = ModelDownloader()
         with open('config.json') as self.configuration:
             self.user_config = json.load(self.configuration)
-        self.model = model = "1SdjAt39Mjfi2mklO.bin"
+        self.model = model = "2024.bin"
 
         if not Path(model).is_file():
             self.model_download.download_file(f"https://huggingface.co/AndriLawrence/gpt2-chatkobi-ai/resolve/main/2024.bin", model)
