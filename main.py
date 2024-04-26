@@ -2,6 +2,34 @@ import streamlit as st
 import random
 import time
 from load_model import Chainer
+import textdistance
+
+# Fungsi untuk menghitung skor Jaro-Winkler antara dua string
+def jaro_winkler_similarity(s1, s2, threshold=0.95):
+    similarity_score = textdistance.jaro_winkler.normalized_similarity(s1, s2)
+    if similarity_score >= threshold:
+        return similarity_score
+    else:
+        return 0  # Jika similarity_score kurang dari threshold, return 0
+
+# Fungsi untuk memberikan rekomendasi kalimat jika input pengguna typo
+def suggest_correction(input_sentence, sentences, threshold=0.85):
+    max_similarity = -1
+    suggested_sentence = ""
+
+    for sentence in sentences:
+        similarity = jaro_winkler_similarity(input_sentence, sentence, threshold=threshold)
+        if similarity > max_similarity:
+            max_similarity = similarity
+            suggested_sentence = sentence
+
+    return suggested_sentence
+
+# Membaca kalimat-kalimat contoh dari file teks
+def read_example_sentences(file_path):
+    with open(file_path, "r", encoding="utf-8") as file:
+        sentences = [line.strip() for line in file]
+    return sentences
 
 def get_generator():
     if not hasattr(st.session_state, 'generator'):
@@ -130,15 +158,20 @@ if agree_with_disclaimer:
 
                 if not result_text.strip():
                     saran_messages = [
-                "Maaf, pertanyaan Anda terlihat agak rumit bagi saya. Dapatkah Anda mengutarakan dalam kata-kata yang lebih sederhana?",
-                "Sepertinya ada sedikit kebingungan dalam pertanyaan Anda. Bolehkah Anda memberikan penjelasan lebih lanjut?",
-                "Saya merasa kebingungan dengan konteks pertanyaan Anda. Mungkin saya membutuhkan beberapa petunjuk tambahan.",
-                "Pertanyaan Anda mungkin memerlukan sedikit lebih banyak konteks. Bisakah Anda memberikan informasi lebih lanjut?",
-                "Tolong beri saya petunjuk lebih jelas tentang pertanyaan Anda. Saya ingin membantu dengan sebaik-baiknya.",
-                "Saya sedikit bingung dengan pertanyaan Anda. Bisakah Anda mengungkapkan dengan cara yang berbeda?",
-            ]
+                        "Maaf, pertanyaan Anda terlihat agak rumit bagi saya. Dapatkah Anda mengutarakan dalam kata-kata yang lebih sederhana?",
+                        "Sepertinya ada sedikit kebingungan dalam pertanyaan Anda. Bolehkah Anda memberikan penjelasan lebih lanjut?",
+                        "Saya merasa kebingungan dengan konteks pertanyaan Anda. Mungkin saya membutuhkan beberapa petunjuk tambahan.",
+                        "Pertanyaan Anda mungkin memerlukan sedikit lebih banyak konteks. Bisakah Anda memberikan informasi lebih lanjut?",
+                        "Tolong beri saya petunjuk lebih jelas tentang pertanyaan Anda. Saya ingin membantu dengan sebaik-baiknya.",
+                        "Saya sedikit bingung dengan pertanyaan Anda. Bisakah Anda mengungkapkan dengan cara yang berbeda?",
+                    ]
                     result_text = random.choice(saran_messages) + "\n\nContoh pertanyaan yang disarankan:\n" + get_random_example_question()
                     generator.memory.save_context({"input": prompt}, {"output": result_text})
+                
+                suggested_sentence = suggest_correction(prompt, read_example_sentences("jaro_sentence.txt"))
+                if suggested_sentence != prompt:
+                    st.info(f"Mungkin yang Anda maksud adalah: \"{suggested_sentence}\"")
+                
                 if detect_risk_content(result_text):
                     st.warning(random.choice(risk_warnings))
                     result_text = "Jawaban disembunyikan karena mengandung konten berisiko."
@@ -148,7 +181,6 @@ if agree_with_disclaimer:
                 
                 if is_weird_response(result_text) or is_rep(result_text):
                     st.error("Respon AI aneh terdeteksi, Silahkan reload halaman ini", icon='🚨')
-
 
             with st.chat_message("assistant"):
                 message_placeholder = st.empty()
