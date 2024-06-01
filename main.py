@@ -165,7 +165,7 @@ if agree_with_disclaimer:
                 st.warning(random.choice(risk_warnings))
                 result_text = ""
             else:
-                suggested_sentence = suggest_correction(prompt, read_example_sentences("data_bersih.txt"))
+                suggested_sentence = suggest_correction(prompt, read_example_sentences("jaro_sentence.txt"))
                 if suggested_sentence != "0" and suggested_sentence.lower() != prompt.lower():
                     result_text = ''
                     st.info(f"Mungkin yang Anda maksud adalah: \"{suggested_sentence}\"")
