@@ -167,9 +167,9 @@ if agree_with_disclaimer:
             else:
                 suggested_sentence = suggest_correction(prompt, read_example_sentences("jaro_sentence.txt"))
                 if suggested_sentence != "0" and suggested_sentence.lower() != prompt.lower():
-                    result_text = ''
+
                     st.info(f"Mungkin yang Anda maksud adalah: \"{suggested_sentence}\"")
-                else:
+
                     result = generator.chain(prompt)
                     result_text = clean_res(result["response"])
 
