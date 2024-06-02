@@ -6,6 +6,7 @@ import textdistance
 import re
 
 # Fungsi untuk membersihkan dan menormalisasi teks
+# Fungsi untuk membersihkan dan menormalisasi teks
 def normalize_text(text):
     text = text.lower()  # Ubah ke huruf kecil
     text = re.sub(r'\s+', ' ', text)  # Hapus spasi berlebih
@@ -20,32 +21,49 @@ def jaro_winkler_similarity(s1, s2):
 def levenshtein_similarity(s1, s2):
     return textdistance.levenshtein.normalized_similarity(s1, s2)
 
-# Fungsi untuk memberikan rekomendasi kalimat jika input pengguna typo
-def suggest_correction(input_sentence, sentences, threshold=0.7):
+# Fungsi untuk memberikan rekomendasi kata jika input pengguna typo
+def suggest_correction(input_word, word_list, threshold=0.7):
     max_similarity = 0  # Inisialisasi dengan 0
-    suggested_sentence = "0"
+    suggested_word = input_word
 
-    normalized_input = normalize_text(input_sentence)
+    normalized_input = normalize_text(input_word)
 
-    for sentence in sentences:
-        normalized_sentence = normalize_text(sentence)
-        jaro_similarity = jaro_winkler_similarity(normalized_input, normalized_sentence)
-        levenshtein_similarity_score = levenshtein_similarity(normalized_input, normalized_sentence)
+    for word in word_list:
+        normalized_word = normalize_text(word)
+        jaro_similarity = jaro_winkler_similarity(normalized_input, normalized_word)
+        levenshtein_similarity_score = levenshtein_similarity(normalized_input, normalized_word)
         combined_similarity = (jaro_similarity + levenshtein_similarity_score) / 2
 
         if combined_similarity > max_similarity and combined_similarity >= threshold:
             max_similarity = combined_similarity
-            suggested_sentence = sentence
+            suggested_word = word
 
-    print(f"Most similar sentence: '{suggested_sentence}' with similarity score: {max_similarity}")
-    return suggested_sentence
+    print(f"Most similar word: '{suggested_word}' with similarity score: {max_similarity}")
+    return suggested_word, max_similarity
 
-# Membaca kalimat-kalimat contoh dari file teks
-def read_example_sentences(file_path):
+# Fungsi untuk membaca kata-kata contoh dari file teks
+def read_example_words(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
-        sentences = [line.strip() for line in file]
-    return sentences
+        words = [line.strip() for line in file]
+    return words
 
+# Fungsi utama untuk mengoreksi kalimat
+def correct_sentence(input_sentence, word_list, threshold=0.7):
+    words = input_sentence.split()
+    corrected_words = []
+    all_similarity_one = True  # Flag untuk memeriksa jika semua similarity 1.0
+
+    for word in words:
+        corrected_word, similarity = suggest_correction(word, word_list, threshold)
+        if similarity < 1.0:
+            all_similarity_one = False
+        corrected_words.append(corrected_word)
+
+    if all_similarity_one:
+        return '0'
+    
+    corrected_sentence = ' '.join(corrected_words)
+    return corrected_sentence
 def get_generator():
     if not hasattr(st.session_state, 'generator'):
         st.session_state.generator = Chainer()
@@ -165,8 +183,8 @@ if agree_with_disclaimer:
                 st.warning(random.choice(risk_warnings))
                 result_text = ""
             else:
-                suggested_sentence = suggest_correction(prompt, read_example_sentences("jaro_sentence.txt"))
-                if suggested_sentence != "0" and suggested_sentence.lower() != prompt.lower():
+                suggested_sentence = correct_sentence(prompt, read_example_word("jaro_sentence.txt"))
+                if suggested_sentence != "0":
 
                     st.info(f"Mungkin yang Anda maksud adalah: \"{suggested_sentence}\"")
 
