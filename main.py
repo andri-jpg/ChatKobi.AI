@@ -186,7 +186,7 @@ if agree_with_disclaimer:
                 suggested_sentence = correct_sentence(prompt, read_example_words("jaro_sentence.txt"))
                 if suggested_sentence != "0":
                     st.info(f"Mungkin yang Anda maksud adalah: \"{suggested_sentence}\"")
-                    result = generator.chain(prompt)
+                    result = generator.chain(suggested_sentence)
                     result_text = clean_res(result["response"])
                 else:
                     result = generator.chain(prompt)
