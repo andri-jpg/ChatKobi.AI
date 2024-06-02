@@ -179,9 +179,9 @@ if agree_with_disclaimer:
         with st.chat_message("user"):
             st.markdown(prompt)
         if prompt:
+            result_text = ""  # Definisikan result_text di sini untuk memastikan selalu terdefinisi
             if detect_risk_content(prompt):
                 st.warning(random.choice(risk_warnings))
-                result_text = ""
             else:
                 suggested_sentence = correct_sentence(prompt, read_example_words("jaro_sentence.txt"))
                 if suggested_sentence != "0":
