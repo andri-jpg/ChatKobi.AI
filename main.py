@@ -6,7 +6,6 @@ import textdistance
 import re
 
 # Fungsi untuk membersihkan dan menormalisasi teks
-# Fungsi untuk membersihkan dan menormalisasi teks
 def normalize_text(text):
     text = text.lower()  # Ubah ke huruf kecil
     text = re.sub(r'\s+', ' ', text)  # Hapus spasi berlebih
@@ -64,6 +63,7 @@ def correct_sentence(input_sentence, word_list, threshold=0.7):
     
     corrected_sentence = ' '.join(corrected_words)
     return corrected_sentence
+
 def get_generator():
     if not hasattr(st.session_state, 'generator'):
         st.session_state.generator = Chainer()
@@ -185,9 +185,7 @@ if agree_with_disclaimer:
             else:
                 suggested_sentence = correct_sentence(prompt, read_example_words("jaro_sentence.txt"))
                 if suggested_sentence != "0":
-
                     st.info(f"Mungkin yang Anda maksud adalah: \"{suggested_sentence}\"")
-
                     result = generator.chain(prompt)
                     result_text = clean_res(result["response"])
 
