@@ -185,23 +185,23 @@ if agree_with_disclaimer:
                         result_text = random.choice(saran_messages) + "\n\nContoh pertanyaan yang disarankan:\n" + get_random_example_question()
                         generator.memory.save_context({"input": prompt}, {"output": result_text})
                 
-                if detect_risk_content(result_text):
-                    st.warning(random.choice(risk_warnings))
-                    result_text = "Jawaban disembunyikan karena mengandung konten berisiko."
+                    if detect_risk_content(result_text):
+                        st.warning(random.choice(risk_warnings))
+                        result_text = "Jawaban disembunyikan karena mengandung konten berisiko."
                 
-                if detect_trigger_keywords(result_text):
-                    st.warning("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.")
+                    if detect_trigger_keywords(result_text):
+                        st.warning("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.")
                 
-                if is_weird_response(result_text) or is_rep(result_text):
-                    st.error("Respon AI aneh terdeteksi, Silahkan reload halaman ini", icon='🚨')
+                    if is_weird_response(result_text) or is_rep(result_text):
+                        st.error("Respon AI aneh terdeteksi, Silahkan reload halaman ini", icon='🚨')
 
-            with st.chat_message("assistant"):
-                message_placeholder = st.empty()
-                full_response = ""
-                assistant_response = result_text
-                for chunk in assistant_response.split():
-                    full_response += chunk + " "
-                    time.sleep(0.05)
-                    message_placeholder.markdown(full_response + "▌")
-                message_placeholder.markdown(full_response)
-            st.session_state.messages.append({"role": "assistant", "content": full_response})
+                with st.chat_message("assistant"):
+                    message_placeholder = st.empty()
+                    full_response = ""
+                    assistant_response = result_text
+                    for chunk in assistant_response.split():
+                        full_response += chunk + " "
+                        time.sleep(0.05)
+                        message_placeholder.markdown(full_response + "▌")
+                    message_placeholder.markdown(full_response)
+                st.session_state.messages.append({"role": "assistant", "content": full_response})
