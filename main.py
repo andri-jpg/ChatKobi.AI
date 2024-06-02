@@ -179,7 +179,7 @@ if agree_with_disclaimer:
         with st.chat_message("user"):
             st.markdown(prompt)
         if prompt:
-            result_text = ""  # Definisikan result_text di sini untuk memastikan selalu terdefinisi
+
             if detect_risk_content(prompt):
                 st.warning(random.choice(risk_warnings))
             else:
@@ -188,28 +188,31 @@ if agree_with_disclaimer:
                     st.info(f"Mungkin yang Anda maksud adalah: \"{suggested_sentence}\"")
                     result = generator.chain(prompt)
                     result_text = clean_res(result["response"])
+                else:
+                    result = generator.chain(prompt)
+                    result_text = clean_res(result["response"])
 
-                    if not result_text.strip():
-                        saran_messages = [
+                if not result_text.strip():
+                    saran_messages = [
                             "Maaf, pertanyaan Anda terlihat agak rumit bagi saya. Dapatkah Anda mengutarakan dalam kata-kata yang lebih sederhana?",
                             "Sepertinya ada sedikit kebingungan dalam pertanyaan Anda. Bolehkah Anda memberikan penjelasan lebih lanjut?",
                             "Saya merasa kebingungan dengan konteks pertanyaan Anda. Mungkin saya membutuhkan beberapa petunjuk tambahan.",
                             "Pertanyaan Anda mungkin memerlukan sedikit lebih banyak konteks. Bisakah Anda memberikan informasi lebih lanjut?",
                             "Tolong beri saya petunjuk lebih jelas tentang pertanyaan Anda. Saya ingin membantu dengan sebaik-baiknya.",
                             "Saya sedikit bingung dengan pertanyaan Anda. Bisakah Anda mengungkapkan dengan cara yang berbeda?",
-                        ]
-                        result_text = random.choice(saran_messages) + "\n\nContoh pertanyaan yang disarankan:\n" + get_random_example_question()
-                        generator.memory.save_context({"input": prompt}, {"output": result_text})
+                    ]
+                    result_text = random.choice(saran_messages) + "\n\nContoh pertanyaan yang disarankan:\n" + get_random_example_question()
+                    generator.memory.save_context({"input": prompt}, {"output": result_text})
                 
-                    if detect_risk_content(result_text):
-                        st.warning(random.choice(risk_warnings))
-                        result_text = "Jawaban disembunyikan karena mengandung konten berisiko."
+                if detect_risk_content(result_text):
+                    st.warning(random.choice(risk_warnings))
+                    result_text = "Jawaban disembunyikan karena mengandung konten berisiko."
                 
-                    if detect_trigger_keywords(result_text):
-                        st.warning("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.")
+                if detect_trigger_keywords(result_text):
+                    st.warning("Harap di ingat bahwa informasi yang diberikan oleh chatbot ini hanya untuk tujuan informasi umum. Gunakan dengan tanggung jawab.")
                 
-                    if is_weird_response(result_text) or is_rep(result_text):
-                        st.error("Respon AI aneh terdeteksi, Silahkan reload halaman ini", icon='🚨')
+                if is_weird_response(result_text) or is_rep(result_text):
+                    st.error("Respon AI aneh terdeteksi, Silahkan reload halaman ini", icon='🚨')
 
                 with st.chat_message("assistant"):
                     message_placeholder = st.empty()
